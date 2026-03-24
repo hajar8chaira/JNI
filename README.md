@@ -1,8 +1,5 @@
 # Rapport de Laboratoire : Introduction à JNI (Java Native Interface) sous Android
 
-**Rédigé par :** [Votre Nom/Prénom]  
-**Cycle :** Élève-Ingénieur(e) en 4ème année  
-**Module / Cours :** Développement Mobile / Architecture Avancée Android  
 
 ---
 
@@ -26,9 +23,7 @@ La première étape consiste à initialiser un projet configuré pour compiler d
 - Création d'un fichier de configuration `CMakeLists.txt`.
 - Ajout du bloc `externalNativeBuild` dans le fichier `build.gradle.kts`.
 
-> [!IMPORTANT] Screenshot requis
-> Prenez une capture d'écran du panneau **"Project"** dans Android Studio, montrant l'arborescence des fichiers avec le dossier `cpp` contenant `native-lib.cpp` et `CMakeLists.txt`.  
-> *Légende recommandée : Figure 1 - Structure automatique du projet C++ sous Android Studio.*
+<p align="center"> <img src="images/1.png" width="800"> </p>
 
 ### Étape 2 : Compréhension de l'Architecture (JNI, NDK, CMake)
 Avant d'écrire du code, il est essentiel de comprendre l'architecture :
@@ -51,9 +46,12 @@ externalNativeBuild {
     }
 }
 ```
+<p align="center"> <img src="images/2.png" width="800"> </p>
 
 ### Étape 4 : Fichier CMakeLists.txt
 Le fichier `CMakeLists.txt` définit la bibliothèque qui sera construite :
+<p align="center"> <img src="images/3.png" width="600"> </p>
+
 ```cmake
 cmake_minimum_required(VERSION 3.22.1)
 project("jnidemo")
@@ -72,6 +70,7 @@ Nous avons défini quatre (4) fonctions exportées vers le Java, grâce aux macr
 - **Factorielle** : Nous vérifions scrupuleusement les valeurs inférieures à 0 et utilisons la constante `INT_MAX` pour prévenir le dépassement d'un registre entier typique (integer overflow).
 - **Inversion de Str** : Utilisation de pointeurs JNI (`GetStringUTFChars`, `ReleaseStringUTFChars`) pour transférer sûrement la chaîne entre Java et C++.
 - **Tableaux** : Mécanismes JNI spécifiques avec `GetIntArrayElements` pour accèder à la mémoire directement et sans copie superflue, très performant pour la somme de tableaux massifs.
+<p align="center"> <img src="images/5.png" width="600"> </p>
 
 ### Étape 6 : Connexion en Java (`MainActivity.java`)
 Du côté Java, toutes les méthodes natives sont encadrées par le mot-clé `native`. Le chargement explicite de la librairie dynamique, qui s'opère durant l'initialisation statique de la classe, est primordial :
@@ -80,7 +79,8 @@ static {
     System.loadLibrary("native-lib");
 }
 ```
-
+<p align="center"> <img src="images/6.png" width="600"> </p>
+<p align="center"> <img src="images/7.png" width="600"> </p>
 ---
 
 ## Partie 4 : Interface Utilisateur (Layout)
@@ -96,23 +96,38 @@ L'interface graphique est simple et adaptée par la structure d'un `ScrollView` 
 Une fois le code complété, l'application a été compilée sur l'environnement de développement et installée sur un périphérique/émulateur.  
 Les textes affichés sur l'appareil correspondent bien à ce que le code natif est censé rétablir.
 
-> [!IMPORTANT] Screenshot requis
-> Prenez une capture d'écran de l'application tournant sur votre **émulateur** (ou téléphone réel). On doit bien voir les 4 résultats affichés à l'écran (Le Hello World en C++, la factorielle de 10, la chaîne inversée, et la somme finale).  
-> *Légende recommandée : Figure 2 - Résultat visuel du transfert de données Java vers C++.*
+<p align="center"> <img src="images/4.png" width="500"> </p>
 
 ### Étape 9 : Vérification par Logs et Traçage Natif (Logcat)
 En filtrant avec le tag `JNI_DEMO` dans l'outil Logcat d'Android Studio, on peut observer concrètement les `LOGI` programmés en C++.
 C'est le système de la bibliothèque "log" incluse via CMake qui opère ici, confirmant l'exactitude de l'exécution directement à la source.
 
-> [!IMPORTANT] Screenshot requis
-> Prenez une capture d'écran de votre **fenêtre Logcat** sous Android Studio. Filtrez le log par `JNI_DEMO` afin que l'on voie très lisiblement tous les appels C++ depuis le terminal (`Appel de helloFromJNI...`, `Factoriel de 10 calcule...`).  
-> *Légende recommandée : Figure 3 - Traces système Logcat issues du code C++.*
+<p align="center"> <img src="images/8.png" width="800"> </p>
+
+---
+## Partie 6 : Tests Guidés et Robustesses (Étape 10)
+
+Nous avons soumis le code JNI à une rafale de tests techniques de résilience depuis la méthode onCreate :
+<p align="center"> <img src="images/9.png" width="400"> </p>
+<p align="center"> <img src="images/10.png" width="700"> </p>
+
+| Identifiant du Test | Méthode & Paramètre Envoyé | Comportement Attendu | Objectif Technique |
+|:---|:---|:---|:---|
+| **Test 1** | `factorial(10)` | Retour : `3628800` | Condition normale de calcul. |
+| **Test 2** | `factorial(-5)` | Retour : `-1` | Gestion de l'erreur sur entier négatif. |
+| **Test 3** | `factorial(20)` | Retour : `-2` | Détection et gestion d'un dépassement de capacité (Overflow). |
+| **Test 4** | `reverseString("")` | Retour : "" | Stabilité des pointeurs de chaînes de caractères vides. |
+| **Test 5** | `sumArray(new int[]{})` | Retour : `0` | Sécurité d'accès mémoire sur un tableau de taille nulle. |
+
 
 ---
 
+
 ## Partie 7 : Extensions du Laboratoire - Analyse Technique (A, B, C, D)
 
-Cette section detaille les ajouts effectues pour repondre aux exigences de l'Etape 14, avec une approche pedagogique sur le fonctionnement interne de JNI.
+Cette section detaille les ajouts effectues , avec une approche pedagogique sur le fonctionnement interne de JNI.
+<p align="center"> <img src="images/11.png" width="600"> </p>
+<p align="center"> <img src="images/12.png" width="600"> </p>
 
 ### Extension A : Multiplication Matricielle Native (2D Arrays)
 La manipulation de tableaux 2D (`int[][]`) est un defi en JNI car un tableau 2D Java est en réalité un tableau d'objets, où chaque objet est lui-meme un tableau d'entiers. 
