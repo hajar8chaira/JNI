@@ -50,7 +50,7 @@ externalNativeBuild {
 
 ### Étape 4 : Fichier CMakeLists.txt
 Le fichier `CMakeLists.txt` définit la bibliothèque qui sera construite :
-<p align="center"> <img src="images/3.png" width="600"> </p>
+<p align="center"> <img src="images/4.png" width="600"> </p>
 
 ```cmake
 cmake_minimum_required(VERSION 3.22.1)
@@ -91,6 +91,7 @@ L'interface graphique est simple et adaptée par la structure d'un `ScrollView` 
 ---
 
 ## Partie 5 : Exécution et Vérification
+<p align="center"> <img src="images/3.png" width="500"> </p>
 
 ### Étape 8 : Processus d'Exécution
 Une fois le code complété, l'application a été compilée sur l'environnement de développement et installée sur un périphérique/émulateur.  
@@ -109,7 +110,7 @@ C'est le système de la bibliothèque "log" incluse via CMake qui opère ici, co
 
 Nous avons soumis le code JNI à une rafale de tests techniques de résilience depuis la méthode onCreate :
 <p align="center"> <img src="images/9.png" width="400"> </p>
-<p align="center"> <img src="images/10.png" width="700"> </p>
+<p align="center"> <img src="images/10.png" width="800"> </p>
 
 | Identifiant du Test | Méthode & Paramètre Envoyé | Comportement Attendu | Objectif Technique |
 |:---|:---|:---|:---|
