@@ -1,4 +1,4 @@
-# Rapport de Laboratoire : Introduction à JNI (Java Native Interface) sous Android
+#  JNI (Java Native Interface) sous Android
 
 
 ---
@@ -45,6 +45,7 @@ externalNativeBuild {
         version = "3.22.1"
     }
 }
+
 ```
 <p align="center"> <img src="images/2.png" width="800"> </p>
 
@@ -78,9 +79,11 @@ Du côté Java, toutes les méthodes natives sont encadrées par le mot-clé `na
 static {
     System.loadLibrary("native-lib");
 }
+
 ```
 <p align="center"> <img src="images/6.png" width="600"> </p>
 <p align="center"> <img src="images/7.png" width="600"> </p>
+
 ---
 
 ## Partie 4 : Interface Utilisateur (Layout)
