@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- SECTION 1 : TESTS DE BASE -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SECTION 1 : TESTS DE BASE JNI"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvHello"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Statut Hello JNI : En attente..."
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvFactNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Factorielle (10) : En attente..."
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvFactNegative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gestion Erreur (Négatif) : En attente..."
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvFactOverflow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gestion Erreur (Overflow) : En attente..."
+            android:paddingBottom="8dp" />
+
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#CCCCCC" android:layout_marginBottom="16dp"/>
+
+        <!-- SECTION 2 : MANIPULATION DE DONNEES -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SECTION 2 : TYPES COMPLEXES (ARRAY/STRING)"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvReverseEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inversion Chaîne Vide : En attente..."
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvArrayEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Somme Tableau Vide : En attente..."
+            android:paddingBottom="8dp" />
+
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#CCCCCC" android:layout_marginBottom="16dp"/>
+
+        <!-- SECTION 3 : EXTENSIONS AVANCEES -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SECTION 3 : EXTENSIONS (A, B, C, D)"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvMatrices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Extension A (Matrices) : En attente..."
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvCheckString"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Extension B (Sécurité String) : En attente..."
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvBenchmark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Extension C (Benchmark de Performance) : En attente..."
+            android:paddingBottom="8dp"
+            android:lineSpacingExtra="4dp" />
+
+
+
+
+
+    </LinearLayout>
+</ScrollView>
